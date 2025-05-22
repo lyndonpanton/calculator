@@ -1,3 +1,12 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const calculator = require("./calculator");
+    let operand1;
+    let operator;
+    let operand2;
+
+    let calculator = new Calculator();
+    
+    console.log(calculator.operate(10, "+", 20));
+    console.log(calculator.operate(10, "-", 20));
+    console.log(calculator.operate(10, "*", 20));
+    console.log(calculator.operate(10, "/", 20));
 });
