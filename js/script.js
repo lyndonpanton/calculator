@@ -3,6 +3,8 @@ function clickOperation(calculator, operand) {
             displayContent[displayContent.length - 1].match(/[\+\-\x\/\%]/) !== null;
     
     if (!endsWithOperator) {
+        dotEntered = false;
+
         if (isOperandDisplayed) {
             clickEquals(calculator);
         }
@@ -49,6 +51,17 @@ function clickModulo(calculator) {
     }
 }
 
+function clickDecimal(calculator) {
+    let finalCharacter = displayContent[displayContent.length - 1];
+
+    if (displayContent !== "" && decimalCount < 4 && finalCharacter.match(/[0-9]/) !== null) {
+        displayContent += ".";
+        populateDisplay(displayContent);
+
+        dotEntered = true;
+    }
+}
+
 function clickDigit(e) {
     let finalCharacter = displayContent[displayContent.length - 1];
 
@@ -65,11 +78,17 @@ function clickEquals(calculator) {
         if (isOperandDisplayed && finalCharacter.match(/[0-9]/) !== null) {
             let operatorIndex = displayContent.match(/[\+\-\x\/\%]/).index;
             let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
-            let operand1 = parseInt(displayContent.slice(0, operatorIndex));
-            let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
+            let operand1 = parseFloat(displayContent.slice(0, operatorIndex));
+            let operand2 = parseFloat(displayContent.slice(operatorIndex + 1));
+
+            console.log(operand1 + " " + operator + " " + operand2);
             
             displayContent = calculator.operate(operand1, operator, operand2).toFixed(4).toString();
             populateDisplay(displayContent);
+
+            if (displayContent.indexOf(".") === -1) {
+                dotEntered = false;
+            }
             
             isOperandDisplayed = false;
         }
@@ -79,6 +98,8 @@ function clickEquals(calculator) {
 function clickClear() {
     displayContent = "";
     populateDisplay(displayContent);
+
+    dotEntered = false;
 }
 
 function populateDisplay(content) {
@@ -88,11 +109,14 @@ function populateDisplay(content) {
 
 let displayContent = "";
 let isOperandDisplayed = false;
+let dotEntered = false;
+let decimalCount = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
     let calculator = new Calculator();
 
     let digitButtons = document.querySelectorAll(".calculator-digit");
+    let decimalButton = document.querySelector("#calculator-decimal");
     let operatorButtons = document.querySelectorAll(".calculator-operator");
     let equalsButton = document.querySelector("#calculator-equals");
     let clearButton = document.querySelector("#calculator-clear");
@@ -100,8 +124,10 @@ document.addEventListener("DOMContentLoaded", function() {
     digitButtons.forEach(function(button) {
         button.addEventListener("click", clickDigit);
     });
+
+    decimalButton.addEventListener("click", function () { clickDecimal(calculator) });
     
-    operatorButtons.forEach(function(button) {
+    operatorButtons.forEach(function (button) {
         switch (button.textContent) {
             case "+":
                 button.addEventListener("click", function () { clickAdd(calculator) });
@@ -121,6 +147,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    equalsButton.addEventListener("click", function() { clickEquals(calculator) });
+    equalsButton.addEventListener("click", function () { clickEquals(calculator) });
     clearButton.addEventListener("click", clickClear);
 });
