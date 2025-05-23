@@ -13,6 +13,7 @@ An application which allows the user to perform mathematical operations.
 ### Languages and Frameworks
 
 - Frontend: HTML, CSS, JavaScript
+- Testing: Jest
 
 ### Managers, Packages, and Libraries
 
@@ -24,5 +25,6 @@ An application which allows the user to perform mathematical operations.
 ## Credits
 
 - [Lyndon Mykal Panton (Developer)](https://github.com/lyndonpanton)
+- [.gitignore file](https://github.com/nodejs/node/blob/main/.gitignore)
 
 ## References
