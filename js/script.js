@@ -3,15 +3,21 @@ function clickOperation(calculator, operands, operand) {
             displayContent[displayContent.length - 1].match(/[\+\-\x\/\%]/) !== null;
     console.log(endsWithOperator);
     
-    if (isOperandDisplayed && !endsWithOperator) {
-        clickEquals(calculator);
-    }
+    if (!endsWithOperator) {
+        if (isOperandDisplayed) {
+            clickEquals(calculator);
+        }
 
-    if (displayContent !== "" && !endsWithOperator) {
-        displayContent += operand;
+        if (displayContent !== "") {
+            displayContent += operand;
+            populateDisplay(displayContent);
+            updateOperands(operands, operand);
+            isOperandDisplayed = true;
+        }
+    } else {
+        displayContent = displayContent.slice(0, displayContent.length - 1) + operand;
         populateDisplay(displayContent);
         updateOperands(operands, operand);
-        isOperandDisplayed = true;
     }
 }
 
