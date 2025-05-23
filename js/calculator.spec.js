@@ -1,33 +1,33 @@
-const calculator = require("./calculator");
+const Calculator = require("./calculator");
+const calculator = new Calculator();
 
 /*
-    - Test 1: small positive and small positive
-    - Test 2: large positive and small positive
-    - Test 3: large positive and large positive
-    - Test 4: small negative and small negative
-    - Test 5: large negative and large negative
-    - Test 6: positive and negative
+    - Zero
+    - Positve integer
+    - Negative integer
+    - Positive decimal
+    - Negative decimal
 */
 
 describe("addition", function () {
-    test.skip("", function () {
-        expect().toEqual();
+    test("3 + 9 -> 12", function () {
+        expect(calculator.operate(3, "+", 9)).toEqual(12);
     });
     
-    test.skip("", function () {
-        expect().toEqual();
+    test("-23 + 8 -> -15", function () {
+        expect(calculator.operate(-23, "+", 8)).toEqual(-15);
     });
 
-    test.skip("", function () {
-        expect().toEqual();
+    test("0 + -99 -> -99", function () {
+        expect(calculator.operate(0, "+", -99)).toEqual(-99);
     });
 
-    test.skip("", function () {
-        expect().toEqual();
+    test("392.05 + -2.7 -> 389.35", function () {
+        expect(calculator.operate(392.05, "+", -2.7)).toEqual(389.35);
     });
 
-    test.skip("", function () {
-        expect().toEqual();
+    test("-8653 + -0.0001 -> -8653.0001", function () {
+        expect(calculator.operate(-8653, "+", -0.0001)).toEqual(-8653.0001);
     });
 });
 
