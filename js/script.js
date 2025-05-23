@@ -1,5 +1,13 @@
 function clickOperation(calculator, operands, operand) {
-    if (displayContent !== "") {
+    let endsWithOperator =
+            displayContent[displayContent.length - 1].match(/[\+\-\x\/\%]/) !== null;
+    console.log(endsWithOperator);
+    
+    if (isOperandDisplayed && !endsWithOperator) {
+        clickEquals(calculator);
+    }
+
+    if (displayContent !== "" && !endsWithOperator) {
         displayContent += operand;
         populateDisplay(displayContent);
         updateOperands(operands, operand);
@@ -8,42 +16,22 @@ function clickOperation(calculator, operands, operand) {
 }
 
 function clickAdd(calculator, operands) {
-    if (isOperandDisplayed) {
-        clickEquals(calculator);
-    }
-
     clickOperation(calculator, operands, "+");
 }
 
 function clickSubtract(calculator, operands) {
-    if (isOperandDisplayed) {
-        clickEquals(calculator);
-    }
-
     clickOperation(calculator, operands, "-");
 }
 
 function clickMultiply(calculator, operands) {
-    if (isOperandDisplayed) {
-        clickEquals(calculator);
-    }
-
     clickOperation(calculator, operands, "x");
 }
 
 function clickDivide(calculator, operands) {
-    if (isOperandDisplayed) {
-        clickEquals(calculator);
-    }
-
     clickOperation(calculator, operands, "/");
 }
 
 function clickModulo(calculator, operands) {
-    if (isOperandDisplayed) {
-        clickEquals(calculator);
-    }
-
     clickOperation(calculator, operands, "%");
 }
 
