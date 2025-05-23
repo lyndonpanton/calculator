@@ -1,7 +1,7 @@
 function clickOperation(calculator, operands, operand) {
+    console.log(displayContent);
     let endsWithOperator =
             displayContent[displayContent.length - 1].match(/[\+\-\x\/\%]/) !== null;
-    console.log(endsWithOperator);
     
     if (!endsWithOperator) {
         if (isOperandDisplayed) {
@@ -10,10 +10,11 @@ function clickOperation(calculator, operands, operand) {
 
         if (displayContent !== "") {
             displayContent += operand;
-            populateDisplay(displayContent);
-            updateOperands(operands, operand);
-            isOperandDisplayed = true;
         }
+
+        populateDisplay(displayContent);
+        updateOperands(operands, operand);
+        isOperandDisplayed = true;
     } else {
         displayContent = displayContent.slice(0, displayContent.length - 1) + operand;
         populateDisplay(displayContent);
@@ -49,13 +50,13 @@ function clickDigit(e) {
 function clickEquals(calculator) {
     let finalCharacter = displayContent[displayContent.length - 1];
 
-    if (isOperandDisplayed && finalCharacter.match(/[0-9]/) != null) {
+    if (isOperandDisplayed && finalCharacter.match(/[0-9]/) !== null) {
         let operatorIndex = displayContent.match(/[\+\-\x\/\%]/).index;
         let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
         let operand1 = parseInt(displayContent.slice(0, operatorIndex));
         let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
         
-        displayContent = calculator.operate(operand1, operator, operand2);
+        displayContent = calculator.operate(operand1, operator, operand2).toString();
         populateDisplay(displayContent);
         
         isOperandDisplayed = false;
