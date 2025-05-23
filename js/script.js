@@ -1,8 +1,10 @@
 function clickOperation(calculator, operands, operand) {
-    displayContent += operand;
-    populateDisplay(displayContent);
-    updateOperands(operands, operand);
-    isOperandDisplayed = true;
+    if (displayContent !== "") {
+        displayContent += operand;
+        populateDisplay(displayContent);
+        updateOperands(operands, operand);
+        isOperandDisplayed = true;
+    }
 }
 
 function clickAdd(calculator, operands) {
