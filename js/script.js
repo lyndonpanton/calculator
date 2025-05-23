@@ -66,10 +66,11 @@ function clickDecimal(calculator) {
 
 function clickDigit(e) {
     let finalCharacter = displayContent[displayContent.length - 1];
-
-    if (!(finalCharacter === "/" && e.target.textContent == "0")) {
+    let value = (e.type === "keyup") ? e.key : e.target.textContent;
+    
+    if (!(finalCharacter === "/" && value === "0")) {
         if (decimalCount < 4) {
-            displayContent += e.target.textContent;
+            displayContent += value;
             populateDisplay(displayContent);
 
             if (dotEntered) decimalCount += 1;
@@ -103,9 +104,6 @@ function clickEquals(calculator) {
                 // decimalCount = 0; (get last index of dot)
                 decimalCount = displayContent.length - (dotIndex + 1);
             }
-
-            console.log(dotEntered);
-            console.log(decimalCount);
         }
     }
 }
@@ -139,6 +137,53 @@ document.addEventListener("DOMContentLoaded", function() {
 
     digitButtons.forEach(function(button) {
         button.addEventListener("click", clickDigit);
+    });
+
+    document.addEventListener("keyup", function (e) {
+        switch (e.key) {
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+            case "5":
+            case "6":
+            case "7":
+            case "8":
+            case "9":
+                clickDigit(e);
+                break;
+            case ".":
+                clickDecimal(calculator);
+            case "+":
+                clickAdd(calculator);
+                break;
+            case "-":
+                clickSubtract(calculator);
+                break;
+            case "x":
+            case "X":
+            case "*":
+                clickMultiply(calculator);
+                break;
+            case "/":
+                clickDivide(calculator);
+                break;
+            case "%":
+                clickModulo(calculator);
+                break;
+            case "=":
+            case "Enter":
+                clickEquals(calculator);
+                break;
+            case "c":
+            case "C":
+            case "Escape":
+                clickClear();
+                break;
+            default:
+                break;
+        }
     });
 
     decimalButton.addEventListener("click", function () { clickDecimal(calculator) });
