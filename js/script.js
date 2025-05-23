@@ -108,6 +108,28 @@ function clickEquals(calculator) {
     }
 }
 
+function clickBackspace() {
+    if (displayContent !== "") {
+        let finalCharacter = displayContent[displayContent.length - 1];
+
+        displayContent = displayContent.slice(0, displayContent.length - 1);
+        populateDisplay(displayContent);
+
+        if (finalCharacter.match(/[\+\-\x\/\%]/) !== null) {
+            isOperandDisplayed = false;
+        }
+        
+        if (finalCharacter === ".") {
+            dotEntered = false;
+            decimalCount = 0;
+        }
+
+        if (finalCharacter !== "." && dotEntered) {
+            decimalCount -= 1;
+        }
+    }
+}
+
 function clickClear() {
     displayContent = "";
     populateDisplay(displayContent);
@@ -133,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let decimalButton = document.querySelector("#calculator-decimal");
     let operatorButtons = document.querySelectorAll(".calculator-operator");
     let equalsButton = document.querySelector("#calculator-equals");
+    let backspaceButton = document.querySelector("#calculator-backspace");
     let clearButton = document.querySelector("#calculator-clear");
 
     digitButtons.forEach(function(button) {
@@ -209,5 +232,6 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     equalsButton.addEventListener("click", function () { clickEquals(calculator) });
+    backspaceButton.addEventListener("click", clickBackspace);
     clearButton.addEventListener("click", clickClear);
 });

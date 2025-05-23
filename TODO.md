@@ -24,11 +24,11 @@
         - [x] Reset when operator is entered
         - [x] Reset when operation is evaluated (check if result has a decimal)
         - [x] Reset when display is cleared
-- [ ] **Add a functioning backspace button**
-    - [ ] Is there anything to remove
-    - [ ] Is it an operand
-    - [ ] Is it a dot
-    - [ ] Is it a decimal number
+- [x] Add a functioning backspace button
+    - [x] Is there anything to remove
+    - [x] Is it an operand
+    - [x] Is it a dot
+    - [x] Is it a decimal number
 - [x] Add keyboard support
 - [ ] After evaluation, trailing zeros are removed
 - [x] Add a user interface
@@ -39,10 +39,12 @@
     - [ ] Operations should not evaluate to `NaN`
 - [ ] **After evaluation, display most recent operation as well as its result**
     - [Example #1](https://1michael17.github.io/calculator/)
-    - [Example #2]()
-- [ ] Restyling calculator (buttons)
+    - [Example #2](https://haiderbey.github.io/odin-calculator/)
+- [ ] **Restyling calculator (buttons)**
     - [Example #1](https://1michael17.github.io/calculator/)
     - [Example #2](https://haiderbey.github.io/odin-calculator/)
     - [Example #3](https://rjrillon.github.io/calculator-project/)
+- [ ] After a type of button (i.e., dot, digit, operator) has been disabled,
+display that it has been disabled visually
 
 ## Bug
