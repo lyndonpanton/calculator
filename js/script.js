@@ -56,7 +56,7 @@ function clickModulo(calculator) {
 function clickDecimal(calculator) {
     let finalCharacter = displayContent[displayContent.length - 1];
 
-    if (displayContent !== "" && decimalCount < 4 && finalCharacter.match(/[0-9]/) !== null) {
+    if (displayContent !== "" && decimalCount < 4 && finalCharacter.match(/[0-9]/) !== null && !dotEntered) {
         displayContent += ".";
         populateDisplayResult(displayContent);
 

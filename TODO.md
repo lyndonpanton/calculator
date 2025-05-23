@@ -33,6 +33,8 @@
 - [x] After evaluation, trailing zeros are removed
 - [x] Add a user interface
 - [ ] **Add an operation history**
+    - On the side have a list of opertions with the following format:
+    _{operand 1} {operator} {operand 2} = {result}_
 - [ ] Restrict non-decimal digit count similarly to how the decimal count was
 restricted
 - [x] After evaluation, display most recent operation as well as its result
@@ -43,8 +45,12 @@ restricted
     - [Example #1](https://1michael17.github.io/calculator/)
     - [Example #2](https://haiderbey.github.io/odin-calculator/)
     - [Example #3](https://rjrillon.github.io/calculator-project/)
-- [ ] **After a type of button (e.g., dot, digit, operator) has been disabled,
-display that it has been disabled visually**
+- [ ] After a type of button (e.g., dot, digit, operator) has been disabled,
+display that it has been disabled visually
+- [ ] **User should not be able to enter two decimal points in an operand**
+    - i.e., Current the user can enter: 8.0.0x2. JavaScript still correctly
+    interprets this (8.0x2 -> 16), but is still not desirable
+- [ ] **Add tests for each operation**
 
 ## Bug
 
