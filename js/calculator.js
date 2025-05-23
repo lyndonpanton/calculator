@@ -3,7 +3,8 @@ function Calculator() {
         "+": function (a, b) { return a + b; },
         "-": function (a, b) { return a - b },
         "*": function (a, b) { return a * b },
-        "/": function (a, b) { return a / b }
+        "/": function (a, b) { return a / b },
+        "%": function (a, b) { return a % b }
     };
     this.operate = function (operand1, operator, operand2) {
         if (operator in this.operations) {
