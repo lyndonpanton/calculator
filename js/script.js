@@ -1,35 +1,36 @@
 function clickAdd(calculator, operands) {
-    // calculator.operate(10, "+", 20)
     displayContent += "+";
     populateDisplay(displayContent);
     updateOperands(operands, "+");
+    isOperandDisplayed = true;
 }
 
 function clickSubtract(calculator, operands) {
-    // calculator.operate(10, "-", 20)
     displayContent += "-";
     populateDisplay(displayContent);
     updateOperands(operands, "-");
+    isOperandDisplayed = true;
 }
 
 function clickMultiply(calculator, operands) {
-    // calculator.operate(10, "*", 20)
-    displayContent += "*";
+    displayContent += "x";
     populateDisplay(displayContent);
-    updateOperands(operands, "/");
+    updateOperands(operands, "x");
+    isOperandDisplayed = true;
 }
 
 function clickDivide(calculator, operands) {
-    // calculator.operate(10, "/", 20)
     displayContent += "/";
     populateDisplay(displayContent);
     updateOperands(operands, "/");
+    isOperandDisplayed = true;
 }
 
 function clickModulo(calculator, operands) {
     displayContent += "%";
     populateDisplay(displayContent);
     updateOperands(operands, "%");
+    isOperandDisplayed = true;
 }
 
 function clickDigit(e) {
@@ -38,16 +39,15 @@ function clickDigit(e) {
 }
 
 function clickEquals(calculator) {
-    let operatorIndex = displayContent.search(/\+|\-|\*|\//);
-
+    let operatorIndex = displayContent.match(/[\+\-\x\/]/).index;
+    let operator = displayContent.match(/[\+\-\x\/]/)[0];
     let operand1 = parseInt(displayContent.slice(0, operatorIndex));
-    let operator = displayContent[operatorIndex];
     let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
-
-    console.log(
-        "Equation: " + operand1 + " " + operator + " " + operand2 + " = "
-        + calculator.operate(operand1, operator, operand2)
-    );
+    
+    displayContent = calculator.operate(operand1, operator, operand2);
+    populateDisplay(displayContent);
+    
+    isOperandDisplayed = false;
 }
 
 function clickClear() {
@@ -65,6 +65,7 @@ function updateOperands(operands, operand) {
 }
 
 let displayContent = "";
+let isOperandDisplayed = false;
 
 document.addEventListener("DOMContentLoaded", function() {
     let operands = {
