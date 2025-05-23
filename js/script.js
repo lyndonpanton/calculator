@@ -1,5 +1,4 @@
-function clickOperation(calculator, operands, operand) {
-    console.log(displayContent);
+function clickOperation(calculator, operand) {
     let endsWithOperator =
             displayContent[displayContent.length - 1].match(/[\+\-\x\/\%]/) !== null;
     
@@ -13,48 +12,50 @@ function clickOperation(calculator, operands, operand) {
         }
 
         populateDisplay(displayContent);
-        updateOperands(operands, operand);
         isOperandDisplayed = true;
     } else {
         displayContent = displayContent.slice(0, displayContent.length - 1) + operand;
         populateDisplay(displayContent);
-        updateOperands(operands, operand);
     }
 }
 
-function clickAdd(calculator, operands) {
+function clickAdd(calculator) {
     if (displayContent !== "") {
-        clickOperation(calculator, operands, "+");
+        clickOperation(calculator, "+");
     }
 }
 
-function clickSubtract(calculator, operands) {
+function clickSubtract(calculator) {
     if (displayContent !== "") {
-        clickOperation(calculator, operands, "-");
+        clickOperation(calculator, "-");
     }
 }
 
-function clickMultiply(calculator, operands) {
+function clickMultiply(calculator) {
     if (displayContent !== "") {
-        clickOperation(calculator, operands, "x");
+        clickOperation(calculator, "x");
     }
 }
 
-function clickDivide(calculator, operands) {
+function clickDivide(calculator) {
     if (displayContent !== "") {
-        clickOperation(calculator, operands, "/");
+        clickOperation(calculator, "/");
     }
 }
 
-function clickModulo(calculator, operands) {
+function clickModulo(calculator) {
     if (displayContent !== "") {
-        clickOperation(calculator, operands, "%");
+        clickOperation(calculator, "%");
     }
 }
 
 function clickDigit(e) {
-    displayContent += e.target.textContent;
-    populateDisplay(displayContent);
+    let finalCharacter = displayContent[displayContent.length - 1];
+
+    if (!(finalCharacter === "/" && e.target.textContent == "0")) {
+        displayContent += e.target.textContent;
+        populateDisplay(displayContent);
+    }
 }
 
 function clickEquals(calculator) {
@@ -85,19 +86,10 @@ function populateDisplay(content) {
     display.textContent = content;
 }
 
-function updateOperands(operands, operand) {
-    
-}
-
 let displayContent = "";
 let isOperandDisplayed = false;
 
 document.addEventListener("DOMContentLoaded", function() {
-    let operands = {
-        "one": "",
-        "two": ""
-    };
-
     let calculator = new Calculator();
 
     let digitButtons = document.querySelectorAll(".calculator-digit");
@@ -112,19 +104,19 @@ document.addEventListener("DOMContentLoaded", function() {
     operatorButtons.forEach(function(button) {
         switch (button.textContent) {
             case "+":
-                button.addEventListener("click", function () { clickAdd(calculator, operands) });
+                button.addEventListener("click", function () { clickAdd(calculator) });
                 break;
             case "-":
-                button.addEventListener("click", function () { clickSubtract(calculator, operands) });
+                button.addEventListener("click", function () { clickSubtract(calculator) });
                 break;
             case "x":
-                button.addEventListener("click", function () { clickMultiply(calculator, operands) });
+                button.addEventListener("click", function () { clickMultiply(calculator) });
                 break;
             case "/":
-                button.addEventListener("click", function () { clickDivide(calculator, operands) });
+                button.addEventListener("click", function () { clickDivide(calculator) });
                 break;
             case "%":
-                button.addEventListener("click", function () { clickModulo(calculator, operands) });
+                button.addEventListener("click", function () { clickModulo(calculator) });
                 break;
         }
     });
