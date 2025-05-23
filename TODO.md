@@ -30,10 +30,10 @@
     - [x] Is it a dot
     - [x] Is it a decimal number
 - [x] Add keyboard support
-- [ ] After evaluation, trailing zeros are removed
+- [x] After evaluation, trailing zeros are removed
 - [x] Add a user interface
 - [ ] Add an operation history
-- [ ] Restrict digit count similarly to how the decimal count was restricted
+- [ ] Restrict non-decimal digit count similarly to how the decimal count was restricted
 - [ ] Application should work with negative numbers
     - [ ] User is able to start operand with `-`
     - [ ] Operations should not evaluate to `NaN`

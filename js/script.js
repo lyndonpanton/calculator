@@ -89,6 +89,15 @@ function clickEquals(calculator) {
             let operand2 = parseFloat(displayContent.slice(operatorIndex + 1));
             
             displayContent = calculator.operate(operand1, operator, operand2).toFixed(4).toString();
+
+            while (displayContent[displayContent.length - 1] === "0") {
+                displayContent = displayContent.slice(0, displayContent.length - 1);
+            }
+
+            if (displayContent[displayContent.length - 1] === ".") {
+                displayContent = displayContent.slice(0, displayContent.length - 1);
+            }
+
             populateDisplay(displayContent);
 
             isOperandDisplayed = false;
