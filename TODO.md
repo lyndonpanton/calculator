@@ -33,13 +33,15 @@
 - [x] After evaluation, trailing zeros are removed
 - [x] Add a user interface
 - [ ] Add an operation history
-- [ ] Restrict non-decimal digit count similarly to how the decimal count was restricted
+- [ ] Restrict non-decimal digit count similarly to how the decimal count was
+restricted
 - [ ] Application should work with negative numbers
     - [ ] User is able to start operand with `-`
     - [ ] Operations should not evaluate to `NaN`
 - [ ] **After evaluation, display most recent operation as well as its result**
     - [Example #1](https://1michael17.github.io/calculator/)
     - [Example #2](https://haiderbey.github.io/odin-calculator/)
+    - [ ] When the display is cleared, clear the operation as well as the result
 - [ ] **Restyling calculator (buttons)**
     - [Example #1](https://1michael17.github.io/calculator/)
     - [Example #2](https://haiderbey.github.io/odin-calculator/)

@@ -14,12 +14,12 @@ function clickOperation(calculator, operand) {
             displayContent += operand;
         }
         
-        populateDisplay(displayContent);
+        populateDisplayResult(displayContent);
         isOperandDisplayed = true;
 
     } else {
         displayContent = displayContent.slice(0, displayContent.length - 1) + operand;
-        populateDisplay(displayContent);
+        populateDisplayResult(displayContent);
     }
 }
 
@@ -58,7 +58,7 @@ function clickDecimal(calculator) {
 
     if (displayContent !== "" && decimalCount < 4 && finalCharacter.match(/[0-9]/) !== null) {
         displayContent += ".";
-        populateDisplay(displayContent);
+        populateDisplayResult(displayContent);
 
         dotEntered = true;
     }
@@ -71,7 +71,7 @@ function clickDigit(e) {
     if (!(finalCharacter === "/" && value === "0")) {
         if (decimalCount < 4) {
             displayContent += value;
-            populateDisplay(displayContent);
+            populateDisplayResult(displayContent);
 
             if (dotEntered) decimalCount += 1;
         }
@@ -88,6 +88,7 @@ function clickEquals(calculator) {
             let operand1 = parseFloat(displayContent.slice(0, operatorIndex));
             let operand2 = parseFloat(displayContent.slice(operatorIndex + 1));
             
+            populateDisplayOperation(displayContent);
             displayContent = calculator.operate(operand1, operator, operand2).toFixed(4).toString();
 
             while (displayContent[displayContent.length - 1] === "0") {
@@ -98,7 +99,7 @@ function clickEquals(calculator) {
                 displayContent = displayContent.slice(0, displayContent.length - 1);
             }
 
-            populateDisplay(displayContent);
+            populateDisplayResult(displayContent);
 
             isOperandDisplayed = false;
 
@@ -122,7 +123,7 @@ function clickBackspace() {
         let finalCharacter = displayContent[displayContent.length - 1];
 
         displayContent = displayContent.slice(0, displayContent.length - 1);
-        populateDisplay(displayContent);
+        populateDisplayResult(displayContent);
 
         if (finalCharacter.match(/[\+\-\x\/\%]/) !== null) {
             isOperandDisplayed = false;
@@ -141,15 +142,21 @@ function clickBackspace() {
 
 function clickClear() {
     displayContent = "";
-    populateDisplay(displayContent);
+    populateDisplayResult(displayContent);
+    populateDisplayOperation(displayContent);
 
     dotEntered = false;
     decimalCount = 0;
 }
 
-function populateDisplay(content) {
-    let display = document.querySelector("#calculator-display");
-    display.textContent = content;
+function populateDisplayOperation(content) {
+    let displayOperation = document.querySelector("#calculator-display-operation");
+    displayOperation.textContent = content;
+}
+
+function populateDisplayResult(content) {
+    let displayResult = document.querySelector("#calculator-display-result");
+    displayResult.textContent = content;
 }
 
 let displayContent = "";

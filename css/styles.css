@@ -32,14 +32,32 @@ main {
     margin: 5px 0 10px 0;
     border: 2px solid grey;
     border-radius: 2px;
-    height: 68px;
+    height: 80px;
     width: 320px;
     padding: 5px;
 
     background-color: #447744;
 
     color: white;
+}
+
+.calculator-display {
+    margin: 0;
+    height: 16px;
+    padding: 0;
+
+    text-align: right;
+}
+
+#calculator-display-operation {
+    color: #AAAAAA;
+    font-size: 20px;
+}
+
+#calculator-display-result {
+    margin: 2px 0 5px;
     font-size: 32px;
+    font-weight: 600;
 }
 
 .calculator-row {
