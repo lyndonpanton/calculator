@@ -1,0 +1,53 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "description": "An application which allows the user to perform mathematical operations",
+  "keywords": [
+    "calculator",
+    "mathematics",
+    "math",
+    "add",
+    "subtract",
+    "minus\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5Dplus",
+    "\u001b[C\u001b[Dsubtract",
+    "minus",
+    "times",
+    "multiply",
+    "divide",
+    "divison",
+    "addition",
+    "subtraction",
+    "multiplication",
+    "formula",
+    "formulae",
+    "formulas",
+    "equation",
+    "equations",
+    "modulo",
+    "modulos",
+    "numbers",
+    "digits",
+    "calculation",
+    "calculations",
+    "operation",
+    "operations"
+  ],
+  "homepage": "https://github.com/lyndonpanton/calculator#readme",
+  "bugs": {
+    "url": "https://github.com/lyndonpanton/calculator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyndonpanton/calculator.git"
+  },
+  "license": "ISC",
+  "author": "Lyndon Mykal Panton",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
+}
