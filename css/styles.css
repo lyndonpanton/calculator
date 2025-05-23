@@ -25,7 +25,7 @@ main {
 #calculator {
     border: 2px solid white;
     border-radius: 5px;
-    padding: 4px;
+    padding: 8px;
 }
 
 #calculator-display {
@@ -67,4 +67,8 @@ main {
 
     color: white;
     font-size: 24px;
+}
+
+button.calculator-disabled {
+    color: #888888;
 }
