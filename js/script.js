@@ -41,7 +41,7 @@ function clickModulo(calculator, operands) {
     if (isOperandDisplayed) {
         clickEquals(calculator);
     }
-    
+
     clickOperation(calculator, operands, "%");
 }
 
@@ -51,15 +51,19 @@ function clickDigit(e) {
 }
 
 function clickEquals(calculator) {
-    let operatorIndex = displayContent.match(/[\+\-\x\/\%]/).index;
-    let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
-    let operand1 = parseInt(displayContent.slice(0, operatorIndex));
-    let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
-    
-    displayContent = calculator.operate(operand1, operator, operand2);
-    populateDisplay(displayContent);
-    
-    isOperandDisplayed = false;
+    let finalCharacter = displayContent[displayContent.length - 1];
+
+    if (isOperandDisplayed && finalCharacter.match(/[0-9]/) != null) {
+        let operatorIndex = displayContent.match(/[\+\-\x\/\%]/).index;
+        let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
+        let operand1 = parseInt(displayContent.slice(0, operatorIndex));
+        let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
+        
+        displayContent = calculator.operate(operand1, operator, operand2);
+        populateDisplay(displayContent);
+        
+        isOperandDisplayed = false;
+    }
 }
 
 function clickClear() {
