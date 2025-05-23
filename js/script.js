@@ -68,7 +68,7 @@ function clickEquals(calculator) {
             let operand1 = parseInt(displayContent.slice(0, operatorIndex));
             let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
             
-            displayContent = calculator.operate(operand1, operator, operand2).toString();
+            displayContent = calculator.operate(operand1, operator, operand2).toFixed(4).toString();
             populateDisplay(displayContent);
             
             isOperandDisplayed = false;
