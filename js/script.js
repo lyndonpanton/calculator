@@ -23,23 +23,33 @@ function clickOperation(calculator, operands, operand) {
 }
 
 function clickAdd(calculator, operands) {
-    clickOperation(calculator, operands, "+");
+    if (displayContent !== "") {
+        clickOperation(calculator, operands, "+");
+    }
 }
 
 function clickSubtract(calculator, operands) {
-    clickOperation(calculator, operands, "-");
+    if (displayContent !== "") {
+        clickOperation(calculator, operands, "-");
+    }
 }
 
 function clickMultiply(calculator, operands) {
-    clickOperation(calculator, operands, "x");
+    if (displayContent !== "") {
+        clickOperation(calculator, operands, "x");
+    }
 }
 
 function clickDivide(calculator, operands) {
-    clickOperation(calculator, operands, "/");
+    if (displayContent !== "") {
+        clickOperation(calculator, operands, "/");
+    }
 }
 
 function clickModulo(calculator, operands) {
-    clickOperation(calculator, operands, "%");
+    if (displayContent !== "") {
+        clickOperation(calculator, operands, "%");
+    }
 }
 
 function clickDigit(e) {
@@ -48,18 +58,20 @@ function clickDigit(e) {
 }
 
 function clickEquals(calculator) {
-    let finalCharacter = displayContent[displayContent.length - 1];
+    if (displayContent !== "") {
+        let finalCharacter = displayContent[displayContent.length - 1];
 
-    if (isOperandDisplayed && finalCharacter.match(/[0-9]/) !== null) {
-        let operatorIndex = displayContent.match(/[\+\-\x\/\%]/).index;
-        let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
-        let operand1 = parseInt(displayContent.slice(0, operatorIndex));
-        let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
-        
-        displayContent = calculator.operate(operand1, operator, operand2).toString();
-        populateDisplay(displayContent);
-        
-        isOperandDisplayed = false;
+        if (isOperandDisplayed && finalCharacter.match(/[0-9]/) !== null) {
+            let operatorIndex = displayContent.match(/[\+\-\x\/\%]/).index;
+            let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
+            let operand1 = parseInt(displayContent.slice(0, operatorIndex));
+            let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
+            
+            displayContent = calculator.operate(operand1, operator, operand2).toString();
+            populateDisplay(displayContent);
+            
+            isOperandDisplayed = false;
+        }
     }
 }
 
