@@ -32,24 +32,24 @@ describe("addition", function () {
 });
 
 describe("subtraction", function () {
-    test.skip("", function () {
-        expect().toEqual();
+    test("7 - 5 -> 2", function () {
+        expect(calculator.operate(7, "-", 5)).toEqual(2);
     });
     
-    test.skip("", function () {
-        expect().toEqual();
+    test("80 - 103 -> -23", function () {
+        expect(calculator.operate(80, "-", 103)).toEqual(-23);
     });
 
-    test.skip("", function () {
-        expect().toEqual();
+    test("-24 - 6 -> -30", function () {
+        expect(calculator.operate(-24, "-", 6)).toEqual(-30);
     });
 
-    test.skip("", function () {
-        expect().toEqual();
+    test("19 - -4 -> 23", function () {
+        expect(calculator.operate(19, "-", -4)).toEqual(23);
     });
 
-    test.skip("", function () {
-        expect().toEqual();
+    test("-64 - -46 -> -18", function () {
+        expect(calculator.operate(-64, "-", -46)).toEqual(-18);
     });
 });
 
