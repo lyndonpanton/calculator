@@ -1,46 +1,48 @@
+function clickOperation(calculator, operands, operand) {
+    displayContent += operand;
+    populateDisplay(displayContent);
+    updateOperands(operands, operand);
+    isOperandDisplayed = true;
+}
+
 function clickAdd(calculator, operands) {
-    if (!isOperandDisplayed) {
-        displayContent += "+";
-        populateDisplay(displayContent);
-        updateOperands(operands, "+");
-        isOperandDisplayed = true;
+    if (isOperandDisplayed) {
+        clickEquals(calculator);
     }
+
+    clickOperation(calculator, operands, "+");
 }
 
 function clickSubtract(calculator, operands) {
-    if (!isOperandDisplayed) {
-        displayContent += "-";
-        populateDisplay(displayContent);
-        updateOperands(operands, "-");
-        isOperandDisplayed = true;
+    if (isOperandDisplayed) {
+        clickEquals(calculator);
     }
+
+    clickOperation(calculator, operands, "-");
 }
 
 function clickMultiply(calculator, operands) {
-    if (!isOperandDisplayed) {
-        displayContent += "x";
-        populateDisplay(displayContent);
-        updateOperands(operands, "x");
-        isOperandDisplayed = true;
+    if (isOperandDisplayed) {
+        clickEquals(calculator);
     }
+
+    clickOperation(calculator, operands, "x");
 }
 
 function clickDivide(calculator, operands) {
-    if (!isOperandDisplayed) {
-        displayContent += "/";
-        populateDisplay(displayContent);
-        updateOperands(operands, "/");
-        isOperandDisplayed = true;
+    if (isOperandDisplayed) {
+        clickEquals(calculator);
     }
+
+    clickOperation(calculator, operands, "/");
 }
 
 function clickModulo(calculator, operands) {
-    if (!isOperandDisplayed) {
-        displayContent += "%";
-        populateDisplay(displayContent);
-        updateOperands(operands, "%");
-        isOperandDisplayed = true;
+    if (isOperandDisplayed) {
+        clickEquals(calculator);
     }
+    
+    clickOperation(calculator, operands, "%");
 }
 
 function clickDigit(e) {
