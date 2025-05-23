@@ -49,8 +49,8 @@ function clickDigit(e) {
 }
 
 function clickEquals(calculator) {
-    let operatorIndex = displayContent.match(/[\+\-\x\/]/).index;
-    let operator = displayContent.match(/[\+\-\x\/]/)[0];
+    let operatorIndex = displayContent.match(/[\+\-\x\/\%]/).index;
+    let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
     let operand1 = parseInt(displayContent.slice(0, operatorIndex));
     let operand2 = parseInt(displayContent.slice(operatorIndex + 1));
     
