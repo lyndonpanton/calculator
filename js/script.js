@@ -4,17 +4,19 @@ function clickOperation(calculator, operand) {
     
     if (!endsWithOperator) {
         dotEntered = false;
-
+        decimalCount = 0;
+        
         if (isOperandDisplayed) {
             clickEquals(calculator);
         }
-
+        
         if (displayContent !== "") {
             displayContent += operand;
         }
-
+        
         populateDisplay(displayContent);
         isOperandDisplayed = true;
+
     } else {
         displayContent = displayContent.slice(0, displayContent.length - 1) + operand;
         populateDisplay(displayContent);
@@ -70,7 +72,7 @@ function clickDigit(e) {
             displayContent += e.target.textContent;
             populateDisplay(displayContent);
 
-            decimalCount = !dotEntered ? decimalCount + 1 : decimalCount;
+            if (dotEntered) decimalCount += 1;
         }
     }
 }
@@ -84,17 +86,26 @@ function clickEquals(calculator) {
             let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
             let operand1 = parseFloat(displayContent.slice(0, operatorIndex));
             let operand2 = parseFloat(displayContent.slice(operatorIndex + 1));
-
-            console.log(operand1 + " " + operator + " " + operand2);
             
             displayContent = calculator.operate(operand1, operator, operand2).toFixed(4).toString();
             populateDisplay(displayContent);
 
-            if (displayContent.indexOf(".") === -1) {
-                dotEntered = false;
-            }
-            
             isOperandDisplayed = false;
+
+            let dotIndex = displayContent.indexOf(".");
+
+            if (dotIndex === -1) {
+                dotEntered = false;
+                decimalCount = 0;
+            } else {
+                // Calculate
+                dotEntered = true;
+                // decimalCount = 0; (get last index of dot)
+                decimalCount = displayContent.length - (dotIndex + 1);
+            }
+
+            console.log(dotEntered);
+            console.log(decimalCount);
         }
     }
 }
@@ -104,6 +115,7 @@ function clickClear() {
     populateDisplay(displayContent);
 
     dotEntered = false;
+    decimalCount = 0;
 }
 
 function populateDisplay(content) {
