@@ -66,8 +66,12 @@ function clickDigit(e) {
     let finalCharacter = displayContent[displayContent.length - 1];
 
     if (!(finalCharacter === "/" && e.target.textContent == "0")) {
-        displayContent += e.target.textContent;
-        populateDisplay(displayContent);
+        if (decimalCount < 4) {
+            displayContent += e.target.textContent;
+            populateDisplay(displayContent);
+
+            decimalCount = !dotEntered ? decimalCount + 1 : decimalCount;
+        }
     }
 }
 
