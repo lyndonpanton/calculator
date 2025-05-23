@@ -19,6 +19,8 @@ main {
     justify-content: center;
     align-items: center;
 
+    gap: 2vw;
+
     height: 100vh;
 }
 
@@ -84,4 +86,64 @@ main {
 
 button.calculator-disabled {
     color: #888888;
+}
+
+#history {
+    border: 2px solid white;
+    height: 55vh;
+    width: 20vw;
+
+    background-color: #232323;
+    /* background-color: #191819; */
+}
+
+#history-list, .history-item {
+    overflow-y: scroll;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    height: 90%;
+}
+
+#history-list::-webkit-scrollbar, .history-item::-webkit-scrollbar {
+    display: none;
+}
+
+.history-item {
+    border-bottom: 1px solid #AAAAAA;
+    width: 100%;
+    height: 60px;
+    padding: 5px 5px;
+
+    color: white;
+    font-size: 32px;
+    text-align: right;
+
+    overflow-x: scroll;
+}
+
+.history-item > * {
+    font-size: 32px;
+}
+
+.history-item-equation {
+    color: #BBBBBB;
+    font-weight: 500;
+}
+
+.history-item-result {
+    font-weight: 700;
+}
+
+#history-clear {
+    display: block;
+
+    border: 1px solid white;
+    width: 100%;
+    height: 10%;
+
+    background-color: #111144;
+
+    color: white;
+    font-weight: 400;
 }

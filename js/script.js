@@ -87,6 +87,8 @@ function clickEquals(calculator) {
             let operator = displayContent.match(/[\+\-\x\/\%]/)[0];
             let operand1 = parseFloat(displayContent.slice(0, operatorIndex));
             let operand2 = parseFloat(displayContent.slice(operatorIndex + 1));
+
+            let equation = displayContent + "=";
             
             populateDisplayOperation(displayContent);
             displayContent = calculator.operate(operand1, operator, operand2).toFixed(4).toString();
@@ -100,6 +102,7 @@ function clickEquals(calculator) {
             }
 
             populateDisplayResult(displayContent);
+            addHistory(equation, displayContent);
 
             isOperandDisplayed = false;
 
@@ -159,6 +162,35 @@ function populateDisplayResult(content) {
     displayResult.textContent = content;
 }
 
+function addHistory(equation, result) {
+    let historyList = document.querySelector("#history-list");
+
+    let historyItem = document.createElement("p");
+    historyItem.classList.add("history-item");
+
+    let historyEquation = document.createElement("span");
+    let historyResult = document.createElement("span");
+
+    historyEquation.classList.add("history-item-equation");
+    historyResult.classList.add("history-item-result");
+
+    historyEquation.textContent = equation;
+    historyResult.textContent = result;
+
+    historyItem.appendChild(historyEquation);
+    historyItem.appendChild(historyResult);
+
+    historyList.appendChild(historyItem);
+}
+
+function clearHistory() {
+    let historyList = document.querySelector("#history-list");
+
+    while (historyList.firstChild) {
+        historyList.removeChild(historyList.firstChild);
+    }
+}
+
 let displayContent = "";
 let isOperandDisplayed = false;
 let dotEntered = false;
@@ -173,6 +205,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let equalsButton = document.querySelector("#calculator-equals");
     let backspaceButton = document.querySelector("#calculator-backspace");
     let clearButton = document.querySelector("#calculator-clear");
+    let clearHistoryButton = document.querySelector("#history-clear");
 
     digitButtons.forEach(function(button) {
         button.addEventListener("click", clickDigit);
@@ -250,4 +283,5 @@ document.addEventListener("DOMContentLoaded", function() {
     equalsButton.addEventListener("click", function () { clickEquals(calculator) });
     backspaceButton.addEventListener("click", clickBackspace);
     clearButton.addEventListener("click", clickClear);
+    clearHistoryButton.addEventListener("click", clearHistory);
 });
